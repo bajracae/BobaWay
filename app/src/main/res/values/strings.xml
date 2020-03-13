@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BobaWay</string>
+    <string name="enter_location_name">Please enter location below</string>
 </resources>
