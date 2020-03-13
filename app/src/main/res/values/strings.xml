@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BobaWay</string>
+
+    <string name="forecast_for">Forecast for</string>
+    <string name="loading_error_message">Woops.  We couldn\'t load your boba.  Verify that you\'ve entered a valid Yelp API key, check your internet connection, and try again.</string>
 </resources>
