@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_height="match_parent">
 
 
@@ -39,14 +42,18 @@
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
+        style="@style/Base.Widget.AppCompat.RatingBar.Small"
         android:numStars="5"
         android:stepSize="1"
         android:scaleX="3"
         android:scaleY="3"
         android:layout_gravity="center"
+        android:progressTint="@color/colorOrange"
+        android:progressBackgroundTint="@color/colorLightGrey"
+        android:rating="3"
         android:layout_margin="20dp"
-        android:isIndicator="true"/>
+        android:theme="@style/RatingBar"
+        android:isIndicator="false"/>
 
     <Button
         android:id="@+id/b_submit_rating"
