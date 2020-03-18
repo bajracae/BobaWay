@@ -1,5 +1,10 @@
 package com.hfad.bobaway.data;
 
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.hfad.bobaway.utils.YelpUtils;
+
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -36,4 +41,38 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
             mLoadingStatus.setValue(Status.ERROR);
         }
     }
+
+//    private boolean shouldExecuteSearch(String query, String sort, String language, String user,
+//                                        boolean searchInName, boolean searchInDescription,
+//                                        boolean searchInReadme) {
+//        return !TextUtils.equals(query, mCurrentQuery)
+//                || !TextUtils.equals(sort, mCurrentSort)
+//                || !TextUtils.equals(language, mCurrentLanguage)
+//                || !TextUtils.equals(user, mCurrentUser)
+//                || mCurrentSearchInName != searchInName
+//                || mCurrentSearchInDescription != searchInDescription
+//                || mCurrentSearchInReadme != searchInReadme;
+//    }
+
+//    public void loadSearchResults(String query, String sort, String language, String user,
+//                                  boolean searchInName, boolean searchInDescription,
+//                                  boolean searchInReadme) {
+//        if (shouldExecuteSearch(query, sort, language, user, searchInName, searchInDescription, searchInReadme)) {
+//            mCurrentQuery = query;
+//            mCurrentSort = sort;
+//            mCurrentLanguage = language;
+//            mCurrentUser = user;
+//            mCurrentSearchInName = searchInName;
+//            mCurrentSearchInDescription = searchInDescription;
+//            mCurrentSearchInReadme = searchInReadme;
+//            String url = YelpUtils.buildGitHubSearchURL(query, sort, language, user, searchInName,
+//                    searchInDescription, searchInReadme);
+//            mSearchResults.setValue(null);
+//            Log.d(TAG, "executing search with url: " + url);
+//            mLoadingStatus.setValue(Status.LOADING);
+//            new BobaWayAsyncTask(this).execute(url);
+//        } else {
+//            Log.d(TAG, "using cached search results");
+//        }
+
 }

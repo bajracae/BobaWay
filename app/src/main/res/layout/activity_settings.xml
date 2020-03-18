@@ -5,5 +5,5 @@
     android:id="@+id/settings_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.example.android.bobaway.SettingsFragment"
-    tools:context="com.example.android.bobaway.SettingsActivity" />
+    android:name="com.hfad.bobaway.SettingsFragment"
+    tools:context="com.hfad.bobaway.SettingsActivity" />

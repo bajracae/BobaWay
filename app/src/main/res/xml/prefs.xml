@@ -8,6 +8,9 @@
         android:entries="@array/pref_radius_entries"
         android:defaultValue="@string/pref_sort_default" />
 
-<!--        android:entryValues="@array/"-->
+    <EditTextPreference
+        android:key="@string/pref_user_key"
+        android:title="@string/pref_location_title"
+        android:defaultValue="@string/pref_location_default_value"/>
 
 </PreferenceScreen>
