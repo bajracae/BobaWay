@@ -42,7 +42,7 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
     @Override
     public SearchResultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.search_result_item, parent, false);
+        View view = inflater.inflate(R.layout.bobashop_list_item, parent, false);
         return new SearchResultViewHolder(view);
     }
 
@@ -69,7 +69,7 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
             });
         }
         void bind(BobaWayRepo repo) {
-            mSearchResultTV.setText(repo);
+            mSearchResultTV.setText(repo.businesses.length);
         }
     }
 }
