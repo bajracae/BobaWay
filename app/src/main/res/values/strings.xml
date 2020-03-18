@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BobaWay</string>
-
     <string name="pref_sort_key">pref_distance</string>
     <string name="pref_sort_title">Distance (miles)</string>
     <string name="pref_sort_default">Less than 1 mile</string>
+    <string name="enter_location_name">Please enter location</string>
 </resources>
