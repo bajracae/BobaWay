@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hfad.bobaway.data.BobaWayItem;
+import com.hfad.bobaway.utils.YelpUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,6 @@ public class ShopDetailActivity extends AppCompatActivity {
     private TextView mRestTitle;
     private TextView mRestAddr;
     private RatingBar mRestRB;
-    private String mRestID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,6 @@ public class ShopDetailActivity extends AppCompatActivity {
         if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
             repo = (BobaWayItem)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
 
-            mRestID =  repo.id;
             mRestTitle.setText(repo.name);
             mRestAddr.setText(addressFromRepo(repo.location));
             mRestHours.setText(hoursFromRepo(repo));
@@ -60,10 +59,10 @@ public class ShopDetailActivity extends AppCompatActivity {
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d("RepoDetailActivity","Leave a review!");
-//                Intent intent = new Intent(view.getContext(), .class);
-//                intent.putExtra(OpenWeatherMapUtils.EXTRA_FORECAST_ITEM, forecastItem);
-//                startActivity(intent);
+                Log.d("RepoDetailActivity","Leave a review!");
+                Intent intent = new Intent(view.getContext(), ReviewActivity.class);
+                intent.putExtra(YelpUtils.EXTRA_ITEM, repo);
+                startActivity(intent);
             }
         });
     }
