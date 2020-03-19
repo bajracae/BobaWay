@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".ListShopsActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ListShopsActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

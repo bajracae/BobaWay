@@ -1,7 +1,6 @@
 package com.hfad.bobaway;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -37,15 +36,10 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements BobaWayAdapter.OnSearchResultClickListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private RecyclerView searchResultsRV;
     private EditText searchBarET;
-    private ProgressBar loadingIndicatorPB;
-    private TextView errorMessageTV;
-    private DrawerLayout mDrawerLayout;
-
     private BobaWayAdapter bobaWayAdapter;
 
     private BobaWayViewModel viewModel;
@@ -55,63 +49,10 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeAsUpIndicator(R.drawable.ic_nav_menu);
-
-        searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
-
-//        searchResultsRV = findViewById(R.id.rv_search_results);
-//
-//        searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
-//        searchResultsRV.setHasFixedSize(true);
-//
-        bobaWayAdapter = new BobaWayAdapter(this);
-//        searchResultsRV.setAdapter(bobaWayAdapter);
-
-        loadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
-        errorMessageTV = findViewById(R.id.tv_error_message);
-
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-
+        searchBarET = findViewById(R.id.et_bobashop_entry_box);
         viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
+        Button addLocationButton = (Button) findViewById(R.id.btn_main_search);
 
-        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
-            @Override
-            public void onChanged(List<BobaWayRepo> gitHubRepos) {
-                bobaWayAdapter.updateSearchResults(gitHubRepos);
-            }
-        });
-
-
-//        viewModel.getSearchResults().observe(this, new Observer<List<GitHubRepo>>() {
-//            @Override
-//            public void onChanged(List<BobaWayRepo> gitHubRepos) {
-//                bobaWayAdapter.updateSearchResults(gitHubRepos);
-//            }
-//        });
-
-//        viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
-//            @Override
-//            public void onChanged(Status status) {
-//                if (status == Status.LOADING) {
-//                    loadingIndicatorPB.setVisibility(View.VISIBLE);
-//                } else if (status == Status.SUCCESS) {
-//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-//                    searchResultsRV.setVisibility(View.VISIBLE);
-//                    errorMessageTV.setVisibility(View.INVISIBLE);
-//                } else {
-//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-//                    searchResultsRV.setVisibility(View.INVISIBLE);
-//                    errorMessageTV.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
-
-        Button addLocationButton = (Button) findViewById(R.id.btn_bobashop_search);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,63 +64,12 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Intent bobaListIntent =new Intent(v.getContext(), ListShopsActivity.class);
+                    startActivity(bobaListIntent);
                 }
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public void onSearchResultClicked(BobaWayRepo repo) {
-        Intent intent = new Intent(this, RepoDetailActivity.class);
-        intent.putExtra(RepoDetailActivity.EXTRA_BOBAWAY_REPO, repo);
-        startActivity(intent);
-    }
-
-
-    private void doGitHubSearch(String searchQuery) {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        String sort = preferences.getString(
-//                getString(R.string.pref_sort_key),
-//                getString(R.string.pref_sort_default)
-//        );
-//        String language = preferences.getString(
-//                getString(R.string.pref_language_key),
-//                getString(R.string.pref_language_default)
-//        );
-//        String user = preferences.getString(
-//                getString(R.string.pref_user_key), ""
-//        );
-//        boolean searchInName = preferences.getBoolean(
-//                getString(R.string.pref_in_name_key), true
-//        );
-//        boolean searchInDescription = preferences.getBoolean(
-//                getString(R.string.pref_in_description_key), true
-//        );
-//        boolean searchInReadme = preferences.getBoolean(
-//                getString(R.string.pref_in_readme_key), true
-//        );
-//        viewModel.loadSearchResults(searchQuery, sort, language, user, searchInName,
-//                searchInDescription, searchInReadme);
-    }
-
     // This function hides the soft keyboard when click outside of edit text
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
