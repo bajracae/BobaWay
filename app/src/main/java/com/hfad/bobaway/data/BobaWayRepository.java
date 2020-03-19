@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 public class BobaWayRepository implements BobaWayAsyncTask.Callback {
     private static final String TAG = BobaWayRepository.class.getSimpleName();
-    private MutableLiveData<List<BobaWayRepo>> mSearchResults;
+    private MutableLiveData<List<BobaWayItem>> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
 
     public BobaWayRepository() {
@@ -23,7 +23,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
         mLoadingStatus.setValue(Status.SUCCESS);
     }
 
-    public LiveData<List<BobaWayRepo>> getSearchResults() {
+    public LiveData<List<BobaWayItem>> getSearchResults() {
         return mSearchResults;
     }
 
@@ -33,7 +33,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 
 
     @Override
-    public void onSearchFinished(List<BobaWayRepo> searchResults) {
+    public void onSearchFinished(List<BobaWayItem> searchResults) {
         mSearchResults.setValue(searchResults);
         if (searchResults != null) {
             mLoadingStatus.setValue(Status.SUCCESS);

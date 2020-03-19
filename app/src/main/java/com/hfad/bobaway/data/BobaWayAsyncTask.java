@@ -12,7 +12,7 @@ public class BobaWayAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;
 
     public interface Callback {
-        void onSearchFinished(List<BobaWayRepo> searchResults);
+        void onSearchFinished(List<BobaWayItem> searchResults);
     }
 
     public BobaWayAsyncTask(Callback callback){
@@ -33,7 +33,7 @@ public class BobaWayAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        List<BobaWayRepo> searchResults = null;
+        List<BobaWayItem> searchResults = null;
         if (s != null) {
             searchResults = YelpUtils.parseYelpResults(s);
         }

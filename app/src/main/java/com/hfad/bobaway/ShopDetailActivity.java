@@ -15,7 +15,7 @@ import com.hfad.bobaway.data.BobaWayRepo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RepoDetailActivity extends AppCompatActivity {
+public class ShopDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
     private BobaWayRepo repo;
@@ -31,20 +31,20 @@ public class RepoDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_restaurant);
 
-        Intent intent = getIntent();
-        if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
-            repo = (BobaWayRepo)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
-
-            TextView repoNameTV = findViewById(R.id.tv_restaurant_name);
-            repoNameTV.setText(repo.businesses[0].name);
-        }
-
         mLeaveReview = findViewById(R.id.b_leave_a_review);
         mRestAddr = findViewById(R.id.tv_restaurant_address);
         mRestHours = findViewById(R.id.tv_restaurant_hours);
         mRestReviews = findViewById(R.id.tv_restaurant_review);
         mRestTitle = findViewById(R.id.tv_restaurant_name);
         mRestRB = findViewById(R.id.rb_restaurant_rating);
+
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
+            repo = (BobaWayRepo)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
+
+            mRestTitle = findViewById(R.id.tv_restaurant_name);
+            mRestTitle.setText(repo.businesses[0].name);
+        }
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
