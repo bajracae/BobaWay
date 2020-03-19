@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -21,16 +19,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.utils.YelpUtils;
 
-import static com.hfad.bobaway.ShopDetailActivity.EXTRA_BOBAWAY_REPO;
 
 public class ReviewActivity extends AppCompatActivity {
 
+    private TextView textView;
     private EditText editText;
     private RatingBar ratingBar;
     private Button submitButton;
     private float rating;
     private String review;
-
 
     private static final String DB_URL = "jdbc:mysql://192.168.56.1/bobaway";
     private static final String USER = "cs340_perezjoe";
