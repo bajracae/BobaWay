@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     // This function hides the soft keyboard when click outside of edit text
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
