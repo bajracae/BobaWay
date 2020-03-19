@@ -24,7 +24,7 @@ public class BobaWayAsyncTask extends AsyncTask<String, Void, String> {
         String url = strings[0];
         String searchResults = null;
         try {
-            searchResults = NetworkUtils.doHttpGet(url);
+            searchResults = NetworkUtils.doHTTPGet(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
