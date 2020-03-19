@@ -41,8 +41,8 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_shops);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
 
