@@ -18,7 +18,9 @@ public class YelpUtils {
     public final static String EXTRA_ITEM = "ExtraItem";
 
     private final static String YELP_BASE_URL = "https://api.yelp.com/v3/businesses/search";
+    private final static String YELP_SINGLE_BUSINESS_URL = "https://api.yelp.com/v3/businesses";
     private final static String YELP_LOCATION = "location";
+    private final static String YELP_ID = "id";
     private final static String YELP_ALIAS = "categories";
     private final static String YELP_ALIAS_DEFAULT = "bubbletea, Bubble Tea";
 
@@ -26,9 +28,18 @@ public class YelpUtils {
 
     public static String buildOpenYelpURL(String location) {
 
+        Log.d("YelpUtils","location: " + location);
         return Uri.parse(YELP_BASE_URL).buildUpon()
-                .appendQueryParameter(YELP_LOCATION, "Corvallis,OR,USA")
+                .appendQueryParameter(YELP_LOCATION, location)
                 .appendQueryParameter(YELP_ALIAS, YELP_ALIAS_DEFAULT)
+                .build()
+                .toString();
+    }
+
+    public static String buildYelpDetailURL(String id) {
+
+        return Uri.parse(YELP_SINGLE_BUSINESS_URL).buildUpon()
+                .appendQueryParameter(YELP_ID,id)
                 .build()
                 .toString();
     }
@@ -50,13 +61,5 @@ public class YelpUtils {
         }
     }
 
-    public static String buildYelpSearchURL(String location) {
-        String query = new String();
-        Uri.Builder builder = Uri.parse(YELP_BASE_URL).buildUpon();
-        if (!location.equals("")) {
-            query += " " + String.format(YELP_LOCATION, location);
-        }
-        return builder.build().toString();
-    }
 
 }

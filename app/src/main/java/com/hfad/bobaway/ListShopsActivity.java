@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -42,9 +43,9 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_shops);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         searchBarET = findViewById(R.id.et_bobashop_entry_box);
 
@@ -72,6 +73,7 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
         });
         Intent intent = getIntent();
         String location = (String)intent.getSerializableExtra("location");
+        Log.d("List shops", "location in list: " + location);
 //        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayItem>>() {
 //            @Override
 //            public void onChanged(List<BobaWayItem> gitHubRepos) {

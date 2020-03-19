@@ -26,6 +26,10 @@ public class BobaWayViewModel extends ViewModel {
         mRepository.loadSearchResults(location);
     }
 
+    public void loadDetailResults(String id){
+        mRepository.loadDetailResults(id);
+    }
+
     public LiveData<List<BobaWayItem>> getSearchResults() {
         return mSearchResults;
     }

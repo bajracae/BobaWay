@@ -6,13 +6,18 @@ import java.util.ArrayList;
 public class BobaWayItem implements Serializable {
     public String name;
     public BobaWayItem_Location location;
-    public ArrayList<BobaWayItem_Hours> hours;
+    public BobaWayItem_OpenHours hours;
     public String id;
+
+
+    public class BobaWayItem_OpenHours implements Serializable {
+        public BobaWayItem_Hours[] open;
+    }
 
     public class BobaWayItem_Hours implements Serializable {
         public String start;
         public String end;
-        public String day;
+        public int day;
 
     }
 
