@@ -8,6 +8,8 @@ public class BobaWayItem implements Serializable {
     public BobaWayItem_Location location;
     public BobaWayItem_OpenHours hours;
     public String id;
+    public String price;
+    public String image_url;
 
 
     public class BobaWayItem_OpenHours implements Serializable {

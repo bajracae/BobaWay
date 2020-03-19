@@ -4,8 +4,10 @@ package com.hfad.bobaway;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hfad.bobaway.R;
 import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
@@ -57,15 +59,23 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mSearchResultTV;
+        private TextView mSearchPriceTV;
+        private ImageView mSearchImageIV;
 
         SearchResultViewHolder(View itemView) {
             super(itemView);
             mSearchResultTV = itemView.findViewById(R.id.tv_search_result);
+            mSearchPriceTV = itemView.findViewById(R.id.tv_search_result_price);
+            mSearchImageIV = itemView.findViewById(R.id.iv_restaurant_icon);
             itemView.setOnClickListener(this);
 
         }
         void bind(BobaWayItem repo) {
             mSearchResultTV.setText(repo.name);
+            mSearchPriceTV.setText("Price-o-meter: " + repo.price);
+
+            String iconURL = (repo.image_url);
+            Glide.with(mSearchImageIV.getContext()).load(iconURL).into(mSearchImageIV);
         }
 
         @Override

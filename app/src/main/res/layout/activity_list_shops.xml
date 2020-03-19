@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffcc99">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="Enter city..."
+                android:hint="@string/enter_city"
                 android:textSize="25sp"
                 android:importantForAutofill="no" />
 
@@ -35,7 +36,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Search city" />
+                android:text="@string/search_city"
+                android:background="#c4b7fa"/>
 
             <FrameLayout
                 android:layout_width="match_parent"

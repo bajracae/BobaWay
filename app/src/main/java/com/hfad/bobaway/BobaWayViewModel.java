@@ -21,7 +21,6 @@ public class BobaWayViewModel extends ViewModel {
         mLoadingStatus = mRepository.getLoadingStatus();
     }
 
-
     public void loadSearchResults(String location) {
         mRepository.loadSearchResults(location);
     }
