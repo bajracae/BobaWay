@@ -46,6 +46,9 @@ public class YelpUtils {
     public static class YelpResults {
         ArrayList<BobaWayItem> businesses;
     }
+    public static class APIResults{
+        public ArrayList<String> avg;
+    }
 
     @Nullable
     public static ArrayList<BobaWayItem> parseYelpResults(String json) {

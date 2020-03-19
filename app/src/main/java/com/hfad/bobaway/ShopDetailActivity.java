@@ -1,6 +1,7 @@
 package com.hfad.bobaway;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.utils.YelpUtils;
 
@@ -18,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,6 +83,7 @@ public class ShopDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mRestRB.setNumStars(Float.parseFloat(downloadJSON("http://web.engr.oregonstate.edu/~ohste/connector.php")));
     }
 
     private String hoursFromRepo(BobaWayItem.BobaWayItem_OpenHours hours){
@@ -177,5 +183,37 @@ public class ShopDetailActivity extends AppCompatActivity {
     private void doYelpSearch(String id){
         viewModel.loadDetailResults(id);
     }
+    private void downloadJSON(final String url){
+        class DownloadJSON extends AsyncTask<Void, Void, String>{
+            private final OkHttpClient mHTTPClient = new OkHttpClient();
 
+            @Override
+            protected void onPreExecute(){
+                super.onPreExecute();
+            }
+            @Override
+            protected void onPostExecute(String s){
+                super.onPostExecute(s);
+
+            }
+            @Override
+            protected String doInBackground(Void... voids) {
+                try{
+                    Request request = new Request.Builder().url(url).build();
+                    Response response = mHTTPClient.newCall(request).execute();
+                    return convertFromJSON(response.body().string());
+                }
+                catch (Exception e){
+                    return null;
+                }
+            }
+            private String convertFromJSON(String json){
+                Gson gson = new Gson();
+                YelpUtils.APIResults results = gson.fromJson(json, YelpUtils.APIResults.class);
+                return results.avg.get(0);
+            }
+        }
+        DownloadJSON getJSON = new DownloadJSON();
+        getJSON.execute();
+    }
 }
