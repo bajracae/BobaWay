@@ -14,6 +14,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
     private static final String TAG = BobaWayRepository.class.getSimpleName();
     private MutableLiveData<List<BobaWayItem>> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
+    private String mCurrentLocation;
 
     public BobaWayRepository() {
         mSearchResults = new MutableLiveData<>();
@@ -42,38 +43,23 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
         }
     }
 
-//    private boolean shouldExecuteSearch(String query, String sort, String language, String user,
-//                                        boolean searchInName, boolean searchInDescription,
-//                                        boolean searchInReadme) {
-//        return !TextUtils.equals(query, mCurrentQuery)
-//                || !TextUtils.equals(sort, mCurrentSort)
-//                || !TextUtils.equals(language, mCurrentLanguage)
-//                || !TextUtils.equals(user, mCurrentUser)
-//                || mCurrentSearchInName != searchInName
-//                || mCurrentSearchInDescription != searchInDescription
-//                || mCurrentSearchInReadme != searchInReadme;
-//    }
+    private boolean shouldExecuteSearch(String location) {
+        return !TextUtils.equals(location, mCurrentLocation);
+    }
 
     public void loadSearchResults(String location) {
 
-//        if (shouldExecuteSearch(query, sort, language, user, searchInName, searchInDescription, searchInReadme)) {
-//            mCurrentQuery = query;
-//            mCurrentSort = sort;
-//            mCurrentLanguage = language;
-//            mCurrentUser = user;
-//            mCurrentSearchInName = searchInName;
-//            mCurrentSearchInDescription = searchInDescription;
-//            mCurrentSearchInReadme = searchInReadme;
+        if (shouldExecuteSearch(location)) {
             String url = YelpUtils.buildOpenYelpURL(location);
-        Log.d("location here -> ", location);
+            Log.d("location here -> ", location);
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);
-            new BobaWayAsyncTask(this,url).execute();
+            new BobaWayAsyncTask(this, url).execute();
+        } else {
+            Log.d(TAG, "using cached search results");
         }
-//        else {
-//            Log.d(TAG, "using cached search results");
-//        }
+    }
 
     public void loadDetailResults(String id){
         String url = YelpUtils.buildYelpDetailURL(id);

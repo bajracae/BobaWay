@@ -51,24 +51,23 @@ public class ShopDetailActivity extends AppCompatActivity {
         mRestReviews = findViewById(R.id.tv_restaurant_review);
         mRestTitle = findViewById(R.id.tv_restaurant_name);
         mRestRB = findViewById(R.id.rb_restaurant_rating);
-
-        Intent intent = getIntent();
-        if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
-            repo = (BobaWayItem)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
-
-            Log.d("detail","repo: " + repo.location.address1);
-            Log.d("detail","repo: " + repo.id);
-            Log.d("detail","repo: " + repo.name);
-            mRestTitle.setText(repo.name);
-            mRestAddr.setText(addressFromRepo(repo.location));
-//            mRestHours.setText(hoursFromRepo(repo.hours));
-            doYelpSearch(repo.id);
-
-        }
         viewModel = new ViewModelProvider(
                 this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(BobaWayViewModel.class);
+
+        Intent intent = getIntent();
+        repo = (BobaWayItem)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
+        doYelpSearch(repo.id);
+        Log.d("detail","repo: " + repo.location.address1);
+        Log.d("detail","repo: " + repo.id);
+        Log.d("detail","repo: " + repo.name);
+        mRestTitle.setText(repo.name);
+        mRestAddr.setText(addressFromRepo(repo.location));
+        if(repo.hours != null){
+            mRestHours.setText(hoursFromRepo(repo.hours));
+        }
+        else mRestHours.setText("Check website for hours");
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
