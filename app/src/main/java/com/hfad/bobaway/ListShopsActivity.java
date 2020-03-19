@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
 import com.hfad.bobaway.data.Status;
 
+import java.io.IOException;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -62,16 +64,17 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
                 this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(BobaWayViewModel.class);
-        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
+        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayItem>>() {
             @Override
-            public void onChanged(List<BobaWayRepo> gitHubRepos) {
+            public void onChanged(List<BobaWayItem> gitHubRepos) {
                 bobaWayAdapter.updateSearchResults(gitHubRepos);
             }
         });
-
-        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
+        Intent intent = getIntent();
+        String location = (String)intent.getSerializableExtra("location");
+        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayItem>>() {
             @Override
-            public void onChanged(List<BobaWayRepo> gitHubRepos) {
+            public void onChanged(List<BobaWayItem> gitHubRepos) {
                 bobaWayAdapter.updateSearchResults(gitHubRepos);
             }
         });
@@ -103,6 +106,7 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
                 }
             }
         });
+        doYelpSearch(location);
     }
 
     @Override
@@ -124,14 +128,10 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
     }
 
     @Override
-    public void onSearchResultClicked(BobaWayRepo repo) {
+    public void onSearchResultClicked(BobaWayItem repo) {
         Intent intent = new Intent(this, ShopDetailActivity.class);
         intent.putExtra(ShopDetailActivity.EXTRA_BOBAWAY_REPO, repo);
         startActivity(intent);
-    }
-
-    private void doGitHubSearch(String searchQuery) {
-
     }
 
     // This function hides the soft keyboard when click outside of edit text
@@ -142,5 +142,8 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
         return super.dispatchTouchEvent(ev);
+    }
+    private void doYelpSearch(String location){
+        viewModel.loadSearchResults(location);
     }
 }

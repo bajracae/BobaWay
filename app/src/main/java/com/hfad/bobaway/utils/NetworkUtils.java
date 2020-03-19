@@ -17,7 +17,7 @@ public class NetworkUtils {
         Request request = new Request.Builder().url(url).addHeader(HTTP_TOKEN,HTTP_AUTHORIZATION_KEY).build();
         Log.d("NetworkUtils request: ", request.header(HTTP_TOKEN));
         Response response = mHTTPClient.newCall(request).execute();
-
+//        Log.d("NetworkUtils response: " , response.body().string());
         try {
             return response.body().string();
         } finally {

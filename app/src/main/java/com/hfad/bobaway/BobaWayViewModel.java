@@ -1,5 +1,6 @@
 package com.hfad.bobaway;
 
+import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
 import com.hfad.bobaway.data.BobaWayRepository;
 import com.hfad.bobaway.data.Status;
@@ -11,7 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 public class BobaWayViewModel extends ViewModel {
     private BobaWayRepository mRepository;
-    private LiveData<List<BobaWayRepo>> mSearchResults;
+    private LiveData<List<BobaWayItem>> mSearchResults;
     private LiveData<Status> mLoadingStatus;
 
     public BobaWayViewModel() {
@@ -25,7 +26,7 @@ public class BobaWayViewModel extends ViewModel {
         mRepository.loadSearchResults(location);
     }
 
-    public LiveData<List<BobaWayRepo>> getSearchResults() {
+    public LiveData<List<BobaWayItem>> getSearchResults() {
         return mSearchResults;
     }
 

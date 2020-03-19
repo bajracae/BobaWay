@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hfad.bobaway.R;
+import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
 
 import java.util.List;
@@ -15,18 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchResultViewHolder> {
-    private List<BobaWayRepo> mSearchResultsList;
+    private List<BobaWayItem> mSearchResultsList;
     private OnSearchResultClickListener mResultClickListener;
 
     interface OnSearchResultClickListener {
-        void onSearchResultClicked(BobaWayRepo repo);
+        void onSearchResultClicked(BobaWayItem repo);
     }
 
     public BobaWayAdapter(OnSearchResultClickListener listener) {
         mResultClickListener = listener;
     }
 
-    public void updateSearchResults(List<BobaWayRepo> searchResultsList) {
+    public void updateSearchResults(List<BobaWayItem> searchResultsList) {
         mSearchResultsList = searchResultsList;
         notifyDataSetChanged();
     }
@@ -70,8 +71,8 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
                 }
             });
         }
-        void bind(BobaWayRepo repo) {
-            mSearchResultTV.setText(repo.businesses.length);
+        void bind(BobaWayItem repo) {
+            mSearchResultTV.setText(repo.name);
         }
     }
 }

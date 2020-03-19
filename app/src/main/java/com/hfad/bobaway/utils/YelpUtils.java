@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,11 +27,12 @@ public class YelpUtils {
     }
 
     public static class YelpResults {
-        ArrayList<BobaWayRepo> businesses;
+        ArrayList<BobaWayItem> businesses;
     }
 
     @Nullable
-    public static ArrayList<BobaWayRepo> parseYelpResults(String json) {
+    public static ArrayList<BobaWayItem> parseYelpResults(String json) {
+        Log.d("Returned JSON: ", json);
         Gson gson = new Gson();
         YelpResults results = gson.fromJson(json, YelpResults.class);
         if (results != null && results.businesses != null) {
