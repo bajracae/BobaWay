@@ -118,6 +118,11 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
                 String locationText = searchBarET.getText().toString();
                 if (!TextUtils.isEmpty(locationText)) {
                     searchBarET.setText("");
+                    try {
+                        doYelpSearch("Corvallis");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

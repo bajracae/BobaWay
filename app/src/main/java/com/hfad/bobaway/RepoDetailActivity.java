@@ -22,7 +22,7 @@ public class RepoDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repo_detail);
+        setContentView(R.layout.activity_detailed_restaurant);
 
 //        mViewModel = new ViewModelProvider(
 //                this,
@@ -33,7 +33,7 @@ public class RepoDetailActivity extends AppCompatActivity {
         if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
             repo = (BobaWayRepo)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
 
-            TextView repoNameTV = findViewById(R.id.tv_repo_name);
+            TextView repoNameTV = findViewById(R.id.tv_restaurant_name);
             repoNameTV.setText(repo.businesses[0].name);
         }
     }
