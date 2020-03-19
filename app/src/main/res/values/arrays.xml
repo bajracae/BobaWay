@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_radius_entries">
+        <item>Less than 1 mile</item>
+        <item>1 to 5 miles</item>
+        <item>6 to 10 miles</item>
+        <item>11+ miles</item>
+    </string-array>
+</resources>
