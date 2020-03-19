@@ -55,25 +55,25 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
     }
 
 
-    class SearchResultViewHolder extends RecyclerView.ViewHolder {
+    class SearchResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mSearchResultTV;
 
         SearchResultViewHolder(View itemView) {
             super(itemView);
             mSearchResultTV = itemView.findViewById(R.id.tv_search_result);
+            itemView.setOnClickListener(this);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mResultClickListener.onSearchResultClicked(
-                            mSearchResultsList.get(getAdapterPosition())
-                    );
-                }
-            });
         }
         void bind(BobaWayItem repo) {
             mSearchResultTV.setText(repo.name);
         }
+
+        @Override
+        public void onClick(View view) {
+            BobaWayItem boba = mSearchResultsList.get(getAdapterPosition());
+            mResultClickListener.onSearchResultClicked(boba);
+        }
     }
+
 }
 

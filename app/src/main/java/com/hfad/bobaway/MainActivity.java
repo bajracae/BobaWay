@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         searchBarET = findViewById(R.id.et_bobashop_entry_box);
+        searchBarET.setText("");
         viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
         Button addLocationButton = (Button) findViewById(R.id.btn_main_search);
 
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String locationText = searchBarET.getText().toString();
                 if (!TextUtils.isEmpty(locationText)) {
-                    searchBarET.setText("");
+//                    searchBarET.setText("");
                     Intent bobaListIntent =new Intent(v.getContext(), ListShopsActivity.class);
                     bobaListIntent.putExtra("location", searchBarET.getText().toString());
                     startActivity(bobaListIntent);
