@@ -64,27 +64,27 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 
         searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
 
-        searchResultsRV = findViewById(R.id.rv_search_results);
+//        searchResultsRV = findViewById(R.id.rv_search_results);
+//
+//        searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
+//        searchResultsRV.setHasFixedSize(true);
 
-        searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
-        searchResultsRV.setHasFixedSize(true);
-
-        bobaWayAdapter = new BobaWayAdapter(this);
-        searchResultsRV.setAdapter(bobaWayAdapter);
+//        bobaWayAdapter = new BobaWayAdapter(this);
+//        searchResultsRV.setAdapter(bobaWayAdapter);
 
         loadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         errorMessageTV = findViewById(R.id.tv_error_message);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
+//        viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
 
-        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
-            @Override
-            public void onChanged(List<BobaWayRepo> gitHubRepos) {
-                bobaWayAdapter.updateSearchResults(gitHubRepos);
-            }
-        });
+//        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
+//            @Override
+//            public void onChanged(List<BobaWayRepo> gitHubRepos) {
+//                bobaWayAdapter.updateSearchResults(gitHubRepos);
+//            }
+//        });
 
 
 //        viewModel.getSearchResults().observe(this, new Observer<List<GitHubRepo>>() {
@@ -94,35 +94,39 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 //            }
 //        });
 
-        viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
-            @Override
-            public void onChanged(Status status) {
-                if (status == Status.LOADING) {
-                    loadingIndicatorPB.setVisibility(View.VISIBLE);
-                } else if (status == Status.SUCCESS) {
-                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    searchResultsRV.setVisibility(View.VISIBLE);
-                    errorMessageTV.setVisibility(View.INVISIBLE);
-                } else {
-                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    searchResultsRV.setVisibility(View.INVISIBLE);
-                    errorMessageTV.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+//        viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
+//            @Override
+//            public void onChanged(Status status) {
+//                if (status == Status.LOADING) {
+//                    loadingIndicatorPB.setVisibility(View.VISIBLE);
+//                } else if (status == Status.SUCCESS) {
+//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
+//                    searchResultsRV.setVisibility(View.VISIBLE);
+//                    errorMessageTV.setVisibility(View.INVISIBLE);
+//                } else {
+//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
+//                    searchResultsRV.setVisibility(View.INVISIBLE);
+//                    errorMessageTV.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
 
+        //clicked button, sends string of location and goes to next page (Act 2) layout
         Button addLocationButton = (Button) findViewById(R.id.btn_bobashop_search);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String locationText = searchBarET.getText().toString();
                 if (!TextUtils.isEmpty(locationText)) {
-                    searchBarET.setText("");
-                    try {
-                        doYelpSearch("Corvallis");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    searchBarET.setText("");
+                    Intent strLoc = new Intent(MainActivity.this, ListShopsActivity.class);
+                    strLoc.putExtra("location", locationText);
+                    startActivity(new Intent(MainActivity.this, ListShopsActivity.class));
+//                    try {
+//                        doYelpSearch("Corvallis");
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             }
         });
@@ -189,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
         }
         return super.dispatchTouchEvent(ev);
     }
-    private void doYelpSearch(String location) throws IOException {
-        viewModel.loadSearchResults(location);
-    }
+//    private void doYelpSearch(String location) throws IOException {
+//        viewModel.loadSearchResults(location);
+//    }
 }

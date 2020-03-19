@@ -15,6 +15,9 @@
             android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
+            android:name=".ListShopsActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">

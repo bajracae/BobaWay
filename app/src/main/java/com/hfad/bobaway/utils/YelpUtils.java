@@ -16,6 +16,8 @@ import static android.content.ContentValues.TAG;
 public class YelpUtils {
     private final static String YELP_BASE_URL = "https://api.yelp.com/v3/businesses/search";
     private final static String YELP_LOCATION = "location";
+    private static final String YELP_SEARCH_IN_NAME = "name";
+    private static final String YELP_QUERY_PARAM = "param";
 
     public static String buildOpenYelpURL(String location) {
 

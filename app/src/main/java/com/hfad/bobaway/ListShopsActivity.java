@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -36,6 +37,8 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
     private DrawerLayout mDrawerLayout;
     private BobaWayAdapter bobaWayAdapter;
     private BobaWayViewModel viewModel;
+    private String location = getIntent().getExtras().getString("location"); //searched location from MainActivity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
+        searchBarET = (EditText)findViewById(R.id.et_bobashop_entry_box);
 
         searchResultsRV = findViewById(R.id.rv_search_results);
         searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
@@ -90,13 +93,15 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
                 }
             }
         });
-
+        //error, needs to populate search bar
+//        Intent intent = getIntent();
+//        searchBarET.setText(intent.getExtras().getString("location"));
         Button addLocationButton = (Button) findViewById(R.id.btn_bobashop_search);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String locationText = searchBarET.getText().toString();
-                if (!TextUtils.isEmpty(locationText)) {
+//               Log.d("Location: ", );
+                if (!TextUtils.isEmpty(searchBarET.getText())) {
                     searchBarET.setText("");
                 }
             }
