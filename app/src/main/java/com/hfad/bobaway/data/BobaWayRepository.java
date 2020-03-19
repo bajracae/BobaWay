@@ -68,7 +68,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);
-            new BobaWayAsyncTask(this).execute(url);
+            new BobaWayAsyncTask(this,url).execute();
         }
 //        else {
 //            Log.d(TAG, "using cached search results");
