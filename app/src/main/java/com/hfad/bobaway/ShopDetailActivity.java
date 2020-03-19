@@ -15,7 +15,7 @@ import com.hfad.bobaway.data.BobaWayRepo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RepoDetailActivity extends AppCompatActivity {
+public class ShopDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
     private BobaWayRepo repo;

@@ -44,7 +44,7 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
+        searchBarET = findViewById(R.id.et_bobashop_entry_box);
 
         searchResultsRV = findViewById(R.id.rv_search_results);
         searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
@@ -58,8 +58,10 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
-
+        viewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication())
+        ).get(BobaWayViewModel.class);
         viewModel.getSearchResults().observe(this, new Observer<List<BobaWayRepo>>() {
             @Override
             public void onChanged(List<BobaWayRepo> gitHubRepos) {
@@ -123,8 +125,8 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
 
     @Override
     public void onSearchResultClicked(BobaWayRepo repo) {
-        Intent intent = new Intent(this, RepoDetailActivity.class);
-        intent.putExtra(RepoDetailActivity.EXTRA_BOBAWAY_REPO, repo);
+        Intent intent = new Intent(this, ShopDetailActivity.class);
+        intent.putExtra(ShopDetailActivity.EXTRA_BOBAWAY_REPO, repo);
         startActivity(intent);
     }
 

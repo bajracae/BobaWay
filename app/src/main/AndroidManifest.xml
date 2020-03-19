@@ -27,6 +27,8 @@
             android:name=".ListShopsActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ShopDetailActivity"
+            android:parentActivityName=".ListShopsActivity"/>
     </application>
 
 </manifest>

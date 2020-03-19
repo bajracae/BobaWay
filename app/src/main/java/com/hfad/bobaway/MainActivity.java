@@ -58,12 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 String locationText = searchBarET.getText().toString();
                 if (!TextUtils.isEmpty(locationText)) {
                     searchBarET.setText("");
-                    try {
-                        doYelpSearch("Corvallis");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     Intent bobaListIntent =new Intent(v.getContext(), ListShopsActivity.class);
+                    bobaListIntent.putExtra("location", searchBarET.getText().toString());
                     startActivity(bobaListIntent);
                 }
             }
@@ -77,8 +73,5 @@ public class MainActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
         return super.dispatchTouchEvent(ev);
-    }
-    private void doYelpSearch(String location) throws IOException {
-        viewModel.loadSearchResults(location);
     }
 }
