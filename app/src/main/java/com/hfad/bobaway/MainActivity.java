@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 
         searchBarET = (EditText) findViewById(R.id.et_bobashop_entry_box);
 
-        searchResultsRV = findViewById(R.id.rv_search_results);
-
-        searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
-        searchResultsRV.setHasFixedSize(true);
-
+//        searchResultsRV = findViewById(R.id.rv_search_results);
+//
+//        searchResultsRV.setLayoutManager(new LinearLayoutManager(this));
+//        searchResultsRV.setHasFixedSize(true);
+//
         bobaWayAdapter = new BobaWayAdapter(this);
-        searchResultsRV.setAdapter(bobaWayAdapter);
+//        searchResultsRV.setAdapter(bobaWayAdapter);
 
         loadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         errorMessageTV = findViewById(R.id.tv_error_message);
@@ -94,22 +94,22 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 //            }
 //        });
 
-        viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
-            @Override
-            public void onChanged(Status status) {
-                if (status == Status.LOADING) {
-                    loadingIndicatorPB.setVisibility(View.VISIBLE);
-                } else if (status == Status.SUCCESS) {
-                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    searchResultsRV.setVisibility(View.VISIBLE);
-                    errorMessageTV.setVisibility(View.INVISIBLE);
-                } else {
-                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    searchResultsRV.setVisibility(View.INVISIBLE);
-                    errorMessageTV.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+//        viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
+//            @Override
+//            public void onChanged(Status status) {
+//                if (status == Status.LOADING) {
+//                    loadingIndicatorPB.setVisibility(View.VISIBLE);
+//                } else if (status == Status.SUCCESS) {
+//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
+//                    searchResultsRV.setVisibility(View.VISIBLE);
+//                    errorMessageTV.setVisibility(View.INVISIBLE);
+//                } else {
+//                    loadingIndicatorPB.setVisibility(View.INVISIBLE);
+//                    searchResultsRV.setVisibility(View.INVISIBLE);
+//                    errorMessageTV.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
 
         Button addLocationButton = (Button) findViewById(R.id.btn_bobashop_search);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
