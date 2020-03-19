@@ -72,12 +72,12 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
         });
         Intent intent = getIntent();
         String location = (String)intent.getSerializableExtra("location");
-        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayItem>>() {
-            @Override
-            public void onChanged(List<BobaWayItem> gitHubRepos) {
-                bobaWayAdapter.updateSearchResults(gitHubRepos);
-            }
-        });
+//        viewModel.getSearchResults().observe(this, new Observer<List<BobaWayItem>>() {
+//            @Override
+//            public void onChanged(List<BobaWayItem> gitHubRepos) {
+//                bobaWayAdapter.updateSearchResults(gitHubRepos);
+//            }
+//        });
 
         viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
             @Override

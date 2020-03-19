@@ -19,11 +19,16 @@ public class YelpUtils {
 
     private final static String YELP_BASE_URL = "https://api.yelp.com/v3/businesses/search";
     private final static String YELP_LOCATION = "location";
+    private final static String YELP_ALIAS = "categories";
+    private final static String YELP_ALIAS_DEFAULT = "bubbletea, Bubble Tea";
+
+
 
     public static String buildOpenYelpURL(String location) {
 
         return Uri.parse(YELP_BASE_URL).buildUpon()
                 .appendQueryParameter(YELP_LOCATION, "Corvallis,OR,USA")
+                .appendQueryParameter(YELP_ALIAS, YELP_ALIAS_DEFAULT)
                 .build()
                 .toString();
     }
