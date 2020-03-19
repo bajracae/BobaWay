@@ -72,7 +72,12 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
         }
         void bind(BobaWayItem repo) {
             mSearchResultTV.setText(repo.name);
-            mSearchPriceTV.setText("Price-o-meter: " + repo.price);
+            if (repo.price!=null){
+                mSearchPriceTV.setText("Price-o-meter: " + repo.price);
+            }
+            else{
+                mSearchPriceTV.setVisibility(View.INVISIBLE);
+            }
 
             String iconURL = (repo.image_url);
             Glide.with(mSearchImageIV.getContext()).load(iconURL).into(mSearchImageIV);

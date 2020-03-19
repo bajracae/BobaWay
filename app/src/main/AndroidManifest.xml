@@ -44,5 +44,7 @@
             android:name=".ShopDetailActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity android:name=".ReviewActivity"
+            android:parentActivityName=".ShopDetailActivity"/>
     </application>
 </manifest>
