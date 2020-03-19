@@ -2,8 +2,12 @@ package com.hfad.bobaway;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hfad.bobaway.data.BobaWayRepo;
@@ -15,16 +19,17 @@ public class RepoDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
     private BobaWayRepo repo;
+    private Button mLeaveReview;
+    private TextView mRestHours;
+    private TextView mRestReviews;
+    private TextView mRestTitle;
+    private TextView mRestAddr;
+    private RatingBar mRestRB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_restaurant);
-
-//        mViewModel = new ViewModelProvider(
-//                this,
-//                new ViewModelProvider.AndroidViewModelFactory(getApplication())
-//        ).get(SavedReposViewModel.class);
 
         Intent intent = getIntent();
         if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
@@ -33,7 +38,23 @@ public class RepoDetailActivity extends AppCompatActivity {
             TextView repoNameTV = findViewById(R.id.tv_restaurant_name);
             repoNameTV.setText(repo.businesses[0].name);
         }
+
+        mLeaveReview = findViewById(R.id.b_leave_a_review);
+        mRestAddr = findViewById(R.id.tv_restaurant_address);
+        mRestHours = findViewById(R.id.tv_restaurant_hours);
+        mRestReviews = findViewById(R.id.tv_restaurant_review);
+        mRestTitle = findViewById(R.id.tv_restaurant_name);
+        mRestRB = findViewById(R.id.rb_restaurant_rating);
+
+        mLeaveReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("RepoDetailActivity","Leave a review!");
+            }
+        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,4 +86,5 @@ public class RepoDetailActivity extends AppCompatActivity {
             startActivity(chooserIntent);
         }
     }
+
 }
