@@ -63,8 +63,41 @@
 
 package com.hfad.bobaway;
 
+import android.view.View;
+import android.widget.Button;
+import android.os.Bundle;
+
+
+import java.io.IOException;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
+    private Button myButton;
+    private BobaSearchViewModel myViewModel;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        myButton =findViewById(R.id.btn_bobashop_search);
+        myButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                try {
+                    doYelpSearch("Corvallis");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        myViewModel = new ViewModelProvider(this).get(BobaSearchViewModel.class);
+
+    }
+    private void doYelpSearch(String location) throws IOException {
+        myViewModel.loadSearchResults(location);
+    }
 }
