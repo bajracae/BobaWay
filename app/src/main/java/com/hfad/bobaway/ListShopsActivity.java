@@ -37,7 +37,7 @@ public class ListShopsActivity extends AppCompatActivity implements BobaWayAdapt
     private DrawerLayout mDrawerLayout;
     private BobaWayAdapter bobaWayAdapter;
     private BobaWayViewModel viewModel;
-    private String location = getIntent().getExtras().getString("location"); //searched location from MainActivity
+    private String location = getIntent().getExtras().getString("location"); //searched location sent from MainActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
