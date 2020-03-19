@@ -67,7 +67,7 @@ public class ShopDetailActivity extends AppCompatActivity {
         if(repo.hours != null){
             mRestHours.setText(hoursFromRepo(repo.hours));
         }
-        else mRestHours.setText("Check website for hours");
+        else mRestHours.setText("");
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
