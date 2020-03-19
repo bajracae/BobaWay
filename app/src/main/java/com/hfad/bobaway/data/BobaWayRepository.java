@@ -55,6 +55,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //    }
 
     public void loadSearchResults(String location) {
+
 //        if (shouldExecuteSearch(query, sort, language, user, searchInName, searchInDescription, searchInReadme)) {
 //            mCurrentQuery = query;
 //            mCurrentSort = sort;
