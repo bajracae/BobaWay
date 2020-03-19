@@ -11,7 +11,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.hfad.bobaway.data.BobaWayItem;
-import com.hfad.bobaway.data.BobaWayRepo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +20,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RepoDetailActivity extends AppCompatActivity {
+public class ShopDetailActivity extends AppCompatActivity {
+
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
-//    private BobaWayRepo repo;
+    //    private BobaWayRepo repo;
     private BobaWayItem repo;
     private Button mLeaveReview;
     private TextView mRestHours;

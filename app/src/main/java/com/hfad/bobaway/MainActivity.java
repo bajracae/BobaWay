@@ -52,18 +52,15 @@ public class MainActivity extends AppCompatActivity {
         searchBarET = findViewById(R.id.et_bobashop_entry_box);
         viewModel = new ViewModelProvider(this).get(BobaWayViewModel.class);
         Button addLocationButton = (Button) findViewById(R.id.btn_main_search);
+
         addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String locationText = searchBarET.getText().toString();
                 if (!TextUtils.isEmpty(locationText)) {
                     searchBarET.setText("");
-                    try {
-                        doYelpSearch("Corvallis");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     Intent bobaListIntent =new Intent(v.getContext(), ListShopsActivity.class);
+                    bobaListIntent.putExtra("location", searchBarET.getText().toString());
                     startActivity(bobaListIntent);
                 }
             }
@@ -78,7 +75,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
-    private void doYelpSearch(String location) throws IOException {
-        viewModel.loadSearchResults(location);
-    }
+
 }
