@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffcc99">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -15,13 +16,16 @@
             android:padding="8dp"
             android:layout_width="72dp"
             android:layout_height="72dp" />
+
         <TextView
             android:id="@+id/tv_restaurant_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:padding="8dp"
-            android:textSize="24sp"
-            android:textColor="#000"/>
+            android:textColor="@color/colorBrightPink"
+            android:textSize="30dp"
+            android:textStyle="bold|italic" />
     </LinearLayout>
 
     <LinearLayout
@@ -29,22 +33,25 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:layout_marginLeft="12dp"
-        android:textSize="30sp"
-        android:textColor="#000"
-        android:padding="3dp"></TextView>
-    <TextView
-        android:id="@+id/tv_restaurant_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:layout_marginLeft="12dp"
-        android:textSize="30sp"
-        android:textColor="#000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address:"
+            android:layout_marginLeft="12dp"
+            android:textSize="25sp"
+            android:textColor="@color/colorSoftBrown"
+            android:padding="3dp"/>
+
+        <TextView
+            android:id="@+id/tv_restaurant_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:padding="3dp"
+            android:textColor="@color/colorBrown"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -52,46 +59,49 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="Rating:"
             android:layout_marginLeft="12dp"
-            android:textSize="30sp"
-            android:textColor="#000"/>
+            android:textSize="25sp"
+            android:textColor="@color/colorSoftBrown"/>
+
         <RatingBar
             android:id="@+id/rb_restaurant_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.1"
-            android:rating="0"
-            android:theme="@style/RatingBar"
             android:layout_margin="20dp"
+            android:numStars="5"
+            android:progressBackgroundTint="#F3B069"
             android:progressTint="@color/colorOrange"
-            android:progressBackgroundTint="@color/colorLightGrey"
-            />
+            android:rating="0"
+            android:stepSize="0.1"
+            android:theme="@style/RatingBar" />
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Hours:"-->
+<!--            android:textColor="#000000"-->
+<!--            android:layout_marginLeft="12dp"-->
+<!--            android:padding="3dp"-->
+<!--            android:textSize="30sp"></TextView>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hours:"
-            android:textColor="#000000"
-            android:layout_marginLeft="12dp"
-            android:padding="3dp"
-            android:textSize="30sp"></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_restaurant_hours"></TextView>
+            android:id="@+id/tv_restaurant_hours" />
+
 
     </LinearLayout>
 
@@ -105,17 +115,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reviews:"
-            android:textColor="#000000"
+            android:textColor="@color/colorSoftBrown"
             android:layout_marginLeft="12dp"
             android:padding="3dp"
-            android:textSize="30sp"/>
+            android:textSize="25sp"/>
 
         <TextView
+            android:id="@+id/tv_restaurant_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_restaurant_review"
-            ></TextView>
-
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorBrown"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -125,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:text="Leave a review"></Button>
+        android:text="Leave a review"
+        android:background="#c4b7fa" />
 
 </LinearLayout>

@@ -8,4 +8,7 @@
 
     <color name="colorOrange">#F7680C</color>
     <color name="colorLightGrey">#D3D3D3</color>
+    <color name="colorSoftBrown">#80462C</color>
+    <color name="colorBrown">#744033</color>
+    <color name="colorBrightPink">#FF124A</color>
 </resources>
