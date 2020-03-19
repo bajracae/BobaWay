@@ -81,7 +81,7 @@ public class ReviewActivity extends AppCompatActivity {
                 if (conn == null) {
                     msg = "Connection went wrong";
                 }
-                else{
+                else{ // If conn is not empty, insert the entered value into the
                     String query = "INSERT INTO bobaway" + text + ")";
                     Statement stmt = conn.createStatement();
                     stmt.executeUpdate(query);

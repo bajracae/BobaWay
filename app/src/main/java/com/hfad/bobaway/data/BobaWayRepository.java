@@ -65,6 +65,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //            mCurrentSearchInDescription = searchInDescription;
 //            mCurrentSearchInReadme = searchInReadme;
             String url = YelpUtils.buildOpenYelpURL(location);
+        Log.d("location here -> ", location);
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);

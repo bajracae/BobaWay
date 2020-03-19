@@ -25,7 +25,7 @@ public class YelpUtils {
 
 
     public static String buildOpenYelpURL(String location) {
-
+        Log.d("location -> ", "location" + location);
         return Uri.parse(YELP_BASE_URL).buildUpon()
                 .appendQueryParameter(YELP_LOCATION, "Corvallis,OR,USA")
                 .appendQueryParameter(YELP_ALIAS, YELP_ALIAS_DEFAULT)
