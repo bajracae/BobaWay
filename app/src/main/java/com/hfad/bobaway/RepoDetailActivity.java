@@ -15,9 +15,6 @@ public class RepoDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
     private BobaWayRepo repo;
-//    private boolean isSaved = false;
-
-//    private SavedReposViewModel savedReposViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
