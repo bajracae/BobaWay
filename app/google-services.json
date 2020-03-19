@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "622759159101",
+    "firebase_url": "https://bobaway-1e0ac.firebaseio.com",
+    "project_id": "bobaway-1e0ac",
+    "storage_bucket": "bobaway-1e0ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622759159101:android:de22fe928b5b61c67d9154",
+        "android_client_info": {
+          "package_name": "com.hfad.bobaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622759159101-0hbb50rd3tmnvi1lgm922cbnuj33mkt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLLoN9yKXyLtfJtHaM-8ZRzr_jZ3xwobU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622759159101-0hbb50rd3tmnvi1lgm922cbnuj33mkt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,7 @@
 <?php
-  // Define database connection constants
-  define('DB_HOST', 'classmysql.engr.oregonstate.edu');
-  define('DB_USER', 'cs340_perez');
-  define('DB_PASSWORD', '8666');
-  define('DB_NAME', 'cs340_perez');
-  define('CON_STRING', 'mysql:host=classmysql.engr.oregonstate.edu;dname=cs340_perez');
+   $con=mysqli_connect("","cs340_perezjoe","8666");
+   $sql="INSERT INTO bobaway (cID) VALUES ('1')";
+   if (mysqli_query($con,$sql)) {
+      echo "Values have been inserted successfully";
+   }
 ?>
