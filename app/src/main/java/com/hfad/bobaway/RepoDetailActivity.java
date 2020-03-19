@@ -10,21 +10,29 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.hfad.bobaway.data.BobaWayItem;
 import com.hfad.bobaway.data.BobaWayRepo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class RepoDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BOBAWAY_REPO = "YelpRepo";
 
-    private BobaWayRepo repo;
+//    private BobaWayRepo repo;
+    private BobaWayItem repo;
     private Button mLeaveReview;
     private TextView mRestHours;
     private TextView mRestReviews;
     private TextView mRestTitle;
     private TextView mRestAddr;
     private RatingBar mRestRB;
+    private String mRestID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +48,84 @@ public class RepoDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
-            repo = (BobaWayRepo)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
+            repo = (BobaWayItem)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
 
-            mRestTitle = findViewById(R.id.tv_restaurant_name);
-            mRestTitle.setText(repo.businesses[0].name);
+            mRestID =  repo.id;
+            mRestTitle.setText(repo.name);
+            mRestAddr.setText(addressFromRepo(repo.location));
+            mRestHours.setText(hoursFromRepo(repo));
+
         }
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("RepoDetailActivity","Leave a review!");
+//                Log.d("RepoDetailActivity","Leave a review!");
+//                Intent intent = new Intent(view.getContext(), .class);
+//                intent.putExtra(OpenWeatherMapUtils.EXTRA_FORECAST_ITEM, forecastItem);
+//                startActivity(intent);
             }
         });
+    }
+
+    private String hoursFromRepo(BobaWayItem hours){
+
+        ArrayList<String> hoursArrayList = new ArrayList<>();
+        String finalDate = "";
+
+        for(int i = 0; i < hours.hours.size(); i ++){
+            String start = convertToTime(hours.hours.get(i).start);
+            String end = convertToTime(hours.hours.get(i).end);
+            String date = convertToDay(hours.hours.get(i).day);
+            String dateFormat = date + ": " + start + " - " + end;
+            hoursArrayList.add(dateFormat);
+        }
+
+        for(int i = 0; i < hoursArrayList.size(); i ++){
+            finalDate = finalDate + hoursArrayList.get(i) + "\n";
+        }
+        return finalDate;
+    }
+
+    private String convertToTime(String time){
+        String dateString = "N/A";
+        try {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
+            Date date = sdf.parse(time);
+            dateString = sdf.format(date);
+
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateString;
+    }
+
+    private String convertToDay(String day){
+        switch (day){
+            case "0":
+                return "Monday";
+            case "1":
+                return "Tuesday";
+            case "2":
+                return "Wednesday";
+            case "3":
+                return "Thursday";
+            case "4":
+                return "Friday";
+            case "5":
+                return "Saturday";
+            case "6":
+                return "Sunday";
+            default:
+                return "N/A";
+        }
+    }
+
+    private String addressFromRepo(BobaWayItem.BobaWayItem_Location location){
+        return location.address1 + ", " + location.city + ", " + location.state + ", "
+                + location.country + ". " + location.zip_code;
     }
 
 
