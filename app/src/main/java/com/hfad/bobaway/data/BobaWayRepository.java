@@ -54,6 +54,10 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //                || mCurrentSearchInReadme != searchInReadme;
 //    }
 
+    public void loadSearchResults(String query, Object[] businesses){
+
+    }
+
 //    public void loadSearchResults(String query, String sort, String language, String user,
 //                                  boolean searchInName, boolean searchInDescription,
 //                                  boolean searchInReadme) {

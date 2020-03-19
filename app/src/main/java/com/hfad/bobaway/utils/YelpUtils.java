@@ -19,8 +19,10 @@ public class YelpUtils {
     private final static String YELP_KEY = "Bearer RX0RyDW9JYbHkUrMKp3REkF51-YsQbZbSagBgXZ4HgpZn2WMPBwXat-LzkxiRHZkCEKbue5Yd2qarbhpxm_Ib3DOpF9dIIaLwc5-I2YQs8V4de5ATm8YJbJaQwtsXnYx";
     private final static String YELP_LOCATION = "location";
 
+    private final static String YELP_SEARCH_IN_NAME = "name";
+
     @NotNull
-    public static String buildOpenWeatherURL(String query) {
+    public static String buildYelpSearchURL(String query) {
         return Uri.parse(YELP_BASE_URL).buildUpon()
                 .appendQueryParameter(YELP_QUERY_PARAM, YELP_KEY)
                 .appendQueryParameter(YELP_LOCATION, "Corvallis,OR,USA")
@@ -42,5 +44,21 @@ public class YelpUtils {
         } else {
             return null;
         }
+    }
+
+    public static String buildYelpSearchURL(String query, String id, String name, String location) {
+        Uri.Builder builder = Uri.parse(YELP_BASE_URL).buildUpon();
+
+        if (!name.equals("")) {
+            query += " " + String.format(YELP_SEARCH_IN_NAME, name);
+        }
+
+        if (!location.equals("")) {
+            query += " " + String.format(YELP_LOCATION, location);
+        }
+
+        builder.appendQueryParameter(YELP_QUERY_PARAM, query);
+
+        return builder.build().toString();
     }
 }
