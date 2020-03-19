@@ -23,6 +23,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
+
 
 import com.google.android.material.navigation.NavigationView;
 import com.hfad.bobaway.data.BobaWayRepo;
@@ -168,5 +173,15 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 //        );
 //        viewModel.loadSearchResults(searchQuery, sort, language, user, searchInName,
 //                searchInDescription, searchInReadme);
+    }
+
+    // This function hides the soft keyboard when click outside of edit text
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

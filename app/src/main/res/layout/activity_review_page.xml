@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Rating"
+        android:textSize="40dp"
+        android:layout_gravity="center">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/et_write_review"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="Write your review..."
+        android:layout_margin="10dp"
+        android:background="@drawable/text_background"
+        android:gravity="top|left"
+        android:padding="8dp">
+
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many stars?"
+        android:textSize="35dp"
+        android:layout_gravity="center">
+
+    </TextView>
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+        android:numStars="5"
+        android:stepSize="1"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:layout_gravity="center"
+        android:progressTint="@color/colorOrange"
+        android:progressBackgroundTint="@color/colorLightGrey"
+        android:rating="3"
+        android:layout_margin="20dp"
+        android:theme="@style/RatingBar"
+        android:isIndicator="false"/>
+
+    <Button
+        android:id="@+id/b_submit_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="20dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:padding="18dp">
+
+    </Button>
+
+
+</LinearLayout>
