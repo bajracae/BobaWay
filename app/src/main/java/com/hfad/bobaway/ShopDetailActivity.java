@@ -15,11 +15,15 @@ import com.hfad.bobaway.utils.YelpUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ShopDetailActivity extends AppCompatActivity {
 
@@ -33,6 +37,8 @@ public class ShopDetailActivity extends AppCompatActivity {
     private TextView mRestTitle;
     private TextView mRestAddr;
     private RatingBar mRestRB;
+
+    private BobaWayViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +56,19 @@ public class ShopDetailActivity extends AppCompatActivity {
         if(intent != null && intent.hasExtra(EXTRA_BOBAWAY_REPO)) {
             repo = (BobaWayItem)intent.getSerializableExtra(EXTRA_BOBAWAY_REPO);
 
+            Log.d("detail","repo: " + repo.location.address1);
+            Log.d("detail","repo: " + repo.id);
+            Log.d("detail","repo: " + repo.name);
             mRestTitle.setText(repo.name);
             mRestAddr.setText(addressFromRepo(repo.location));
-            mRestHours.setText(hoursFromRepo(repo));
+//            mRestHours.setText(hoursFromRepo(repo.hours));
+            doYelpSearch(repo.id);
 
         }
+        viewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication())
+        ).get(BobaWayViewModel.class);
 
         mLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +81,16 @@ public class ShopDetailActivity extends AppCompatActivity {
         });
     }
 
-    private String hoursFromRepo(BobaWayItem hours){
+    private String hoursFromRepo(BobaWayItem.BobaWayItem_OpenHours hours){
 
         ArrayList<String> hoursArrayList = new ArrayList<>();
         String finalDate = "";
+        Log.d("detail","hours: " + hours);
 
-        for(int i = 0; i < hours.hours.size(); i ++){
-            String start = convertToTime(hours.hours.get(i).start);
-            String end = convertToTime(hours.hours.get(i).end);
-            String date = convertToDay(hours.hours.get(i).day);
+        for(int i = 0; i < hours.open.length; i ++){
+            String start = convertToTime(hours.open[0].start);
+            String end = convertToTime(hours.open[0].end);
+            String date = convertToDay(hours.open[0].day);
             String dateFormat = date + ": " + start + " - " + end;
             hoursArrayList.add(dateFormat);
         }
@@ -101,21 +116,21 @@ public class ShopDetailActivity extends AppCompatActivity {
         return dateString;
     }
 
-    private String convertToDay(String day){
+    private String convertToDay(int day){
         switch (day){
-            case "0":
+            case 0:
                 return "Monday";
-            case "1":
+            case 1:
                 return "Tuesday";
-            case "2":
+            case 2:
                 return "Wednesday";
-            case "3":
+            case 3:
                 return "Thursday";
-            case "4":
+            case 4:
                 return "Friday";
-            case "5":
+            case 5:
                 return "Saturday";
-            case "6":
+            case 6:
                 return "Sunday";
             default:
                 return "N/A";
@@ -158,6 +173,10 @@ public class ShopDetailActivity extends AppCompatActivity {
             Intent chooserIntent = Intent.createChooser(shareIntent, null);
             startActivity(chooserIntent);
         }
+    }
+
+    private void doYelpSearch(String id){
+        viewModel.loadDetailResults(id);
     }
 
 }

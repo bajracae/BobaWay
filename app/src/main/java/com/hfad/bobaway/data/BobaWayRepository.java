@@ -74,4 +74,10 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //            Log.d(TAG, "using cached search results");
 //        }
 
+    public void loadDetailResults(String id){
+        String url = YelpUtils.buildYelpDetailURL(id);
+        Log.d(TAG, "executing search with url: " + url);
+        mLoadingStatus.setValue(Status.LOADING);
+        new BobaWayAsyncTask(this,url).execute();
+    }
 }
