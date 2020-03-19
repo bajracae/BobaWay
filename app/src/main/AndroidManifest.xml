@@ -16,8 +16,7 @@
             android:parentActivityName=".ListShopsActivity"></activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +25,8 @@
         </activity>
         <activity
             android:name=".ListShopsActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
