@@ -54,9 +54,7 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //                || mCurrentSearchInReadme != searchInReadme;
 //    }
 
-//    public void loadSearchResults(String query, String sort, String language, String user,
-//                                  boolean searchInName, boolean searchInDescription,
-//                                  boolean searchInReadme) {
+    public void loadSearchResults(String location) {
 //        if (shouldExecuteSearch(query, sort, language, user, searchInName, searchInDescription, searchInReadme)) {
 //            mCurrentQuery = query;
 //            mCurrentSort = sort;
@@ -65,13 +63,13 @@ public class BobaWayRepository implements BobaWayAsyncTask.Callback {
 //            mCurrentSearchInName = searchInName;
 //            mCurrentSearchInDescription = searchInDescription;
 //            mCurrentSearchInReadme = searchInReadme;
-//            String url = YelpUtils.buildGitHubSearchURL(query, sort, language, user, searchInName,
-//                    searchInDescription, searchInReadme);
-//            mSearchResults.setValue(null);
-//            Log.d(TAG, "executing search with url: " + url);
-//            mLoadingStatus.setValue(Status.LOADING);
-//            new BobaWayAsyncTask(this).execute(url);
-//        } else {
+            String url = YelpUtils.buildOpenYelpURL(location);
+            mSearchResults.setValue(null);
+            Log.d(TAG, "executing search with url: " + url);
+            mLoadingStatus.setValue(Status.LOADING);
+            new BobaWayAsyncTask(this).execute(url);
+        }
+//        else {
 //            Log.d(TAG, "using cached search results");
 //        }
 

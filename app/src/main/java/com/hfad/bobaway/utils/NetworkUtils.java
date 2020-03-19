@@ -1,5 +1,7 @@
 package com.hfad.bobaway.utils;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -13,6 +15,7 @@ public class NetworkUtils {
 
     public static String doHTTPGet(String url) throws IOException {
         Request request = new Request.Builder().url(url).addHeader(HTTP_TOKEN,HTTP_AUTHORIZATION_KEY).build();
+        Log.d("NetworkUtils request: ", request.header(HTTP_TOKEN).toString());
         Response response = mHTTPClient.newCall(request).execute();
         try {
             return response.body().string();

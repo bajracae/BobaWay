@@ -21,11 +21,8 @@ public class BobaWayViewModel extends ViewModel {
     }
 
 
-    public void loadSearchResults(String query, String sort, String language, String user,
-                                  boolean searchInName, boolean searchInDescription,
-                                  boolean searchInReadme) {
-//        mRepository.loadSearchResults(query, sort, language, user, searchInName,
-//                searchInDescription, searchInReadme);
+    public void loadSearchResults(String location) {
+        mRepository.loadSearchResults(location);
     }
 
     public LiveData<List<BobaWayRepo>> getSearchResults() {

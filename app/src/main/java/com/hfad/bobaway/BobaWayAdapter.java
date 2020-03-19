@@ -1,3 +1,4 @@
+
 package com.hfad.bobaway;
 
 import android.view.LayoutInflater;
@@ -5,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hfad.bobaway.R;
 import com.hfad.bobaway.data.BobaWayRepo;
 
 import java.util.List;
@@ -73,3 +75,4 @@ public class BobaWayAdapter extends RecyclerView.Adapter<BobaWayAdapter.SearchRe
         }
     }
 }
+

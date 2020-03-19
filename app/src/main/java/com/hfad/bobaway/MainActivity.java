@@ -33,6 +33,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.hfad.bobaway.data.BobaWayRepo;
 import com.hfad.bobaway.data.Status;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
 //                bobaWayAdapter.updateSearchResults(gitHubRepos);
 //            }
 //        });
-
 
         viewModel.getLoadingStatus().observe(this, new Observer<Status>() {
             @Override
@@ -183,5 +183,8 @@ public class MainActivity extends AppCompatActivity implements BobaWayAdapter.On
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
         return super.dispatchTouchEvent(ev);
+    }
+    private void doYelpSearch(String location) throws IOException {
+        viewModel.loadSearchResults(location);
     }
 }
