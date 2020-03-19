@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 
 public class YelpUtils {
+    public final static String EXTRA_ITEM = "ExtraItem";
+
     private final static String YELP_BASE_URL = "https://api.yelp.com/v3/businesses/search";
     private final static String YELP_LOCATION = "location";
 
